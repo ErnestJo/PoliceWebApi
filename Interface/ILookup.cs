@@ -9,5 +9,9 @@ namespace policeWebApi.Interface
     public interface ILookup
     {
         public Task<ResponseLookup> roleLookup();
+        public Task<ResponseLookup> genderLookup();
+        public Task<ResponseLookup> titleLookup();
+        public Task<ResponseLookup> martialStatusLookup();
+
     }
 }
