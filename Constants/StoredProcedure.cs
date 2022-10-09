@@ -11,7 +11,7 @@ namespace policeWebApi.Constants
 
         public static string getRoles = schema + "[get_role]";
         public static string getGender = schema + "[get_gender]";
-        public static string getMartialStatus = schema + "[get_martrial]";
+        public static string getMartialStatus = schema + "[get_martial]";
         public static string getTitle = schema + "[get_title]";
     }
 }
