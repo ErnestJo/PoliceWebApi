@@ -67,5 +67,144 @@ namespace policeWebApi.Repository
 
         }
 
+        public async Task<ResponseLookup> genderLookup()
+        {
+            try
+            {
+                Task<IEnumerable<Lookup>> result = await Task.FromResult(_dapper.execute_QueryAsync<Lookup>(StoredProcedure.getGender
+                    , null));
+                var data = (List<Lookup>)await result;
+
+                if (result.Result == null || data.Count == 0)
+                {
+                    ResponseLookup responseTemp = new ResponseLookup();
+                    responseTemp.Code = Codes.N0_Data_Found;
+                    responseTemp.Message = CustomeSMS.NoData;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                    return resdt;
+
+                }
+                else
+                {
+                    ResponseLookup responseTemp = new ResponseLookup();
+                    responseTemp.Code = Codes.SUCCESS;
+                    responseTemp.Message = CustomeSMS.Success;
+                    responseTemp.Data = (List<Lookup>)await result;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                    return resdt;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ResponseLookup responseTemp = new ResponseLookup();
+                responseTemp.Code = Codes.General_failure;
+                responseTemp.Message = ex.Message;
+
+                string sdt = JsonConvert.SerializeObject(responseTemp);
+                ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                return resdt;
+            }
+
+        }
+
+        public async Task<ResponseLookup> titleLookup()
+        {
+            try
+            {
+                Task<IEnumerable<Lookup>> result = await Task.FromResult(_dapper.execute_QueryAsync<Lookup>(StoredProcedure.getTitle
+                    , null));
+                var data = (List<Lookup>)await result;
+
+                if (result.Result == null || data.Count == 0)
+                {
+                    ResponseLookup responseTemp = new ResponseLookup();
+                    responseTemp.Code = Codes.N0_Data_Found;
+                    responseTemp.Message = CustomeSMS.NoData;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                    return resdt;
+
+                }
+                else
+                {
+                    ResponseLookup responseTemp = new ResponseLookup();
+                    responseTemp.Code = Codes.SUCCESS;
+                    responseTemp.Message = CustomeSMS.Success;
+                    responseTemp.Data = (List<Lookup>)await result;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                    return resdt;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ResponseLookup responseTemp = new ResponseLookup();
+                responseTemp.Code = Codes.General_failure;
+                responseTemp.Message = ex.Message;
+
+                string sdt = JsonConvert.SerializeObject(responseTemp);
+                ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                return resdt;
+            }
+
+        }
+
+        public async Task<ResponseLookup> martialStatusLookup()
+        {
+            try
+            {
+                Task<IEnumerable<Lookup>> result = await Task.FromResult(_dapper.execute_QueryAsync<Lookup>(StoredProcedure.getMartialStatus
+                    , null));
+                var data = (List<Lookup>)await result;
+
+                if (result.Result == null || data.Count == 0)
+                {
+                    ResponseLookup responseTemp = new ResponseLookup();
+                    responseTemp.Code = Codes.N0_Data_Found;
+                    responseTemp.Message = CustomeSMS.NoData;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                    return resdt;
+
+                }
+                else
+                {
+                    ResponseLookup responseTemp = new ResponseLookup();
+                    responseTemp.Code = Codes.SUCCESS;
+                    responseTemp.Message = CustomeSMS.Success;
+                    responseTemp.Data = (List<Lookup>)await result;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                    return resdt;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ResponseLookup responseTemp = new ResponseLookup();
+                responseTemp.Code = Codes.General_failure;
+                responseTemp.Message = ex.Message;
+
+                string sdt = JsonConvert.SerializeObject(responseTemp);
+                ResponseLookup resdt = JsonConvert.DeserializeObject<ResponseLookup>(sdt);
+                return resdt;
+            }
+
+        }
+
+
     }
 }
