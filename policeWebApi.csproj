@@ -16,5 +16,10 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\staff\response\" />
+    <Folder Include="Model\staff\request\" />
+  </ItemGroup>
+
 
 </Project>
