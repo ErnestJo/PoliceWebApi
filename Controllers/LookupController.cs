@@ -15,7 +15,6 @@ namespace policeWebApi.Controllers
     [Produces("application/json")]
     public class LookupController : ControllerBase
     {
-
         private readonly ILookup _spconn;
         public  LookupController(ILookup spconn)
         {

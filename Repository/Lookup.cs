@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Dapper;
+using Newtonsoft.Json;
 using policeWebApi.Constants;
 using policeWebApi.Interface;
 using policeWebApi.Model.Lookup;
@@ -25,6 +26,8 @@ namespace policeWebApi.Repository
         {
             try
             {
+
+              
                 Task<IEnumerable<Lookup>> result = await Task.FromResult(_dapper.execute_QueryAsync<Lookup>(StoredProcedure.getRoles
                     , null));
                 var data = (List<Lookup>)await result;
