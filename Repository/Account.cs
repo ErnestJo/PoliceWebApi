@@ -39,8 +39,8 @@ namespace policeWebApi.Repository
                             loginData results = (loginData)await result;
                             if (results == null)
                             {
-                                responseTemp.Code = Codes.Failed_update;
-                                responseTemp.Message = CustomeSMS.failupdate;
+                                responseTemp.Code = Codes.N0_Data_Found;
+                                responseTemp.Message = CustomeSMS.NoData;
 
                                 string sdt = JsonConvert.SerializeObject(responseTemp);
                                 ResponseLogin resdt = JsonConvert.DeserializeObject<ResponseLogin>(sdt);
