@@ -4,6 +4,7 @@ using policeWebApi.Constants;
 using policeWebApi.Interface;
 using policeWebApi.Model;
 using policeWebApi.Model.staff.request;
+using policeWebApi.Model.staff.response;
 using policeWebApi.Services;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace policeWebApi.Repository
                 dp_params.Add("staff_mname", param.staff_mname, DbType.String); 
                 dp_params.Add("staff_lname", param.staff_lname, DbType.String);
                 dp_params.Add("email", param.email, DbType.String);
-                dp_params.Add("gender", param.gender, DbType.Int32);
-                dp_params.Add("phone_number", param.phone_number, DbType.Int32);
+                dp_params.Add("gender", param.gender, DbType.Int64);
+                dp_params.Add("phone_number", param.phone_number, DbType.String);
                 dp_params.Add("staff_role", param.staff_role, DbType.Int32);
                 dp_params.Add("staff_title", param.staff_role, DbType.Int32);
                 dp_params.Add("martial_status", param.staff_role, DbType.Int32);
@@ -79,6 +80,55 @@ namespace policeWebApi.Repository
                 GeneralResponse resdt = JsonConvert.DeserializeObject<GeneralResponse>(sdt);
                 return resdt;
             }
+        }
+
+
+        public async Task<ResponseGetStaff> GetAllStaffs()
+        {
+            try
+            {
+
+
+                Task<IEnumerable<GetStaffs>> result = await Task.FromResult(_dapper.execute_QueryAsync<GetStaffs>(StoredProcedure.getRoles
+                    , null));
+                var data = (List<GetStaffs>)await result;
+
+                if (result.Result == null || data.Count == 0)
+                {
+                    ResponseGetStaff responseTemp = new ResponseGetStaff();
+                    responseTemp.Code = Codes.N0_Data_Found;
+                    responseTemp.Message = CustomeSMS.NoData;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseGetStaff resdt = JsonConvert.DeserializeObject<ResponseGetStaff>(sdt);
+                    return resdt;
+
+                }
+                else
+                {
+                    ResponseGetStaff responseTemp = new ResponseGetStaff();
+                    responseTemp.Code = Codes.SUCCESS;
+                    responseTemp.Message = CustomeSMS.Success;
+                    responseTemp.Data = (List<GetStaffs>)await result;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseGetStaff resdt = JsonConvert.DeserializeObject<ResponseGetStaff>(sdt);
+                    return resdt;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ResponseGetStaff responseTemp = new ResponseGetStaff();
+                responseTemp.Code = Codes.General_failure;
+                responseTemp.Message = ex.Message;
+
+                string sdt = JsonConvert.SerializeObject(responseTemp);
+                ResponseGetStaff resdt = JsonConvert.DeserializeObject<ResponseGetStaff>(sdt);
+                return resdt;
+            }
+
         }
     }
 }

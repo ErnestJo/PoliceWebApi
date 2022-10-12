@@ -40,7 +40,8 @@ namespace policeWebApi
             });
 
             services.AddSingleton<IDapperRepository, DapperRepository>();
-            services.AddSingleton<ILookup, LookUp>(); 
+            services.AddSingleton<ILookup, LookUp>();
+            services.AddSingleton<IStaffManagement, StaffManagement>();
             services.AddSingleton<IAccount, Account>();
         }
 

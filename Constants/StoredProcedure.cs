@@ -16,7 +16,7 @@ namespace policeWebApi.Constants
         public static string getTitle = schema + "[get_title]";
 
         //staff managament
-        public static string addStaff = schema + "[add_staffs]";
+        public static string addStaff = schema + "[add_staff]";
         public static string getStaff = schema + "[get_staffs]";
         public static string updateStaff = schema  + "[update_staff]";
 

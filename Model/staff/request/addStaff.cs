@@ -16,7 +16,7 @@ namespace policeWebApi.Model.staff.request
 
         public string email { get; set; }
 
-        public int phone_number { get; set; }
+        public string phone_number { get; set; }
 
         public int gender { get; set; }
 

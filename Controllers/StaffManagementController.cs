@@ -66,7 +66,7 @@ namespace policeWebApi.Controllers
                     return rtn;
                 }
 
-                else if (param.phone_number.GetType() != typeof(long))
+                else if (param.phone_number.GetType() != typeof(string) || string.IsNullOrWhiteSpace(param.phone_number) || param.phone_number.Length != 12  || !Regex.Match(param.phone_number, @"^(2556[123456789]|2557[123456789])\d{7}$").Success)
                 {
                     GeneralResponse rtn = new GeneralResponse
                     {
@@ -76,42 +76,6 @@ namespace policeWebApi.Controllers
                     return rtn;
                 }
 
-                else if (param.gender.GetType() != typeof(long) || param.gender == 0)
-                {
-                    GeneralResponse rtn = new GeneralResponse
-                    {
-                        Code = Codes.Data_validattion_error,
-                        Message = "Gender  Invalid"
-                    };
-                    return rtn;
-                }
-                else if (param.staff_role.GetType() != typeof(long) || param.staff_role == 0)
-                {
-                    GeneralResponse rtn = new GeneralResponse
-                    {
-                        Code = Codes.Data_validattion_error,
-                        Message = "Role  Invalid"
-                    };
-                    return rtn;
-                }
-                else if (param.staff_title.GetType() != typeof(long) || param.staff_title == 0)
-                {
-                    GeneralResponse rtn = new GeneralResponse
-                    {
-                        Code = Codes.Data_validattion_error,
-                        Message = "Title  Invalid"
-                    };
-                    return rtn;
-                }
-                else if (param.martial_status.GetType() != typeof(long) || param.martial_status == 0)
-                {
-                    GeneralResponse rtn = new GeneralResponse
-                    {
-                        Code = Codes.Data_validattion_error,
-                        Message = "Martial Status  Invalid"
-                    };
-                    return rtn;
-                }
                 else
                 {
                     var result = await _spconn.AddStaff(param);
