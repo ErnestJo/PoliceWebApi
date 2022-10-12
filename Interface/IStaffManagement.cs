@@ -1,11 +1,14 @@
-﻿using System;
+﻿using policeWebApi.Model;
+using policeWebApi.Model.staff.request;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace policeWebApi.Interface
 {
-    interface IStaffManagement
+     public interface IStaffManagement
     {
+        public Task<GeneralResponse> AddStaff(addStaff param);
     }
 }
