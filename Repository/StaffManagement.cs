@@ -89,7 +89,7 @@ namespace policeWebApi.Repository
             {
 
 
-                Task<IEnumerable<GetStaffs>> result = await Task.FromResult(_dapper.execute_QueryAsync<GetStaffs>(StoredProcedure.getRoles
+                Task<IEnumerable<GetStaffs>> result = await Task.FromResult(_dapper.execute_QueryAsync<GetStaffs>(StoredProcedure.getStaff
                     , null));
                 var data = (List<GetStaffs>)await result;
 

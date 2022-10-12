@@ -2,6 +2,7 @@
 using policeWebApi.Interface;
 using policeWebApi.Model;
 using policeWebApi.Model.staff.request;
+using policeWebApi.Model.staff.response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,26 @@ namespace policeWebApi.Controllers
                     Code = Codes.General_failure,
                     Message = ex.Message
                 };
+                return exp;
+            }
+        }
+
+        [HttpGet(nameof(GetAllStaff))]
+        public async Task<ResponseGetStaff> GetAllStaff()
+        {
+            try
+            {
+                var results = await _spconn.GetAllStaffs();
+                return results;
+            }
+            catch (Exception ex)
+            {
+                ResponseGetStaff exp = new ResponseGetStaff
+                {
+                    Code = Codes.General_failure,
+                    Message = ex.Message
+                };
+                //log error
                 return exp;
             }
         }
