@@ -114,5 +114,25 @@ namespace policeWebApi.Controllers
             }
         }
 
+        [HttpPost(nameof(UpdateStaff))]
+        public async Task<GeneralResponse> UpdateStaff(EditStaff param)
+        {
+            try
+            {
+                    var result = await _spconn.UpdateStaff(param);
+                    return result;
+                
+            }
+            catch (Exception ex)
+            {
+                GeneralResponse exp = new GeneralResponse
+                {
+                    Code = Codes.General_failure,
+                    Message = ex.Message
+                };
+                return exp;
+            }
+        }
+
     }
 }
