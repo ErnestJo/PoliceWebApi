@@ -188,5 +188,53 @@ namespace policeWebApi.Repository
             }
 
         }
+
+        public async Task<ResponseGetStaff> GetSingleStaff(ById param)
+        {
+            try
+            {
+
+
+                Task<IEnumerable<GetStaffs>> result = await Task.FromResult(_dapper.execute_QueryAsync<GetStaffs>(StoredProcedure.getStaffById
+                    , null));
+                var data = (GetStaffs)await result;
+
+                if (result.Result == null )
+                {
+                    ResponseGetStaff responseTemp = new ResponseGetStaff();
+                    responseTemp.Code = Codes.N0_Data_Found;
+                    responseTemp.Message = CustomeSMS.NoData;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseGetStaff resdt = JsonConvert.DeserializeObject<ResponseGetStaff>(sdt);
+                    return resdt;
+
+                }
+                else
+                {
+                    ResponseGetStaff responseTemp = new ResponseGetStaff();
+                    responseTemp.Code = Codes.SUCCESS;
+                    responseTemp.Message = CustomeSMS.Success;
+                    responseTemp.Data = (List<GetStaffs>)await result;
+
+                    string sdt = JsonConvert.SerializeObject(responseTemp);
+                    ResponseGetStaff resdt = JsonConvert.DeserializeObject<ResponseGetStaff>(sdt);
+                    return resdt;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ResponseGetStaff responseTemp = new ResponseGetStaff();
+                responseTemp.Code = Codes.General_failure;
+                responseTemp.Message = ex.Message;
+
+                string sdt = JsonConvert.SerializeObject(responseTemp);
+                ResponseGetStaff resdt = JsonConvert.DeserializeObject<ResponseGetStaff>(sdt);
+                return resdt;
+            }
+
+        }
     }
 }
