@@ -134,5 +134,25 @@ namespace policeWebApi.Controllers
             }
         }
 
+        [HttpPost(nameof(GetSingleStaff))]
+        public async Task<ResponseGetStaff> GetSingleStaff(ById param)
+        {
+            try
+            {
+                var result = await _spconn.GetSingleStaff(param);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                ResponseGetStaff exp = new ResponseGetStaff
+                {
+                    Code = Codes.General_failure,
+                    Message = ex.Message
+                };
+                return exp;
+            }
+        }
+
     }
 }

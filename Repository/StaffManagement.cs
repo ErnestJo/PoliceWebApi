@@ -193,11 +193,12 @@ namespace policeWebApi.Repository
         {
             try
             {
-
+                var dp_params = new DynamicParameters();
+                dp_params.Add("id", param.id, DbType.Int32);
 
                 Task<IEnumerable<GetStaffs>> result = await Task.FromResult(_dapper.execute_QueryAsync<GetStaffs>(StoredProcedure.getStaffById
-                    , null));
-                var data = (GetStaffs)await result;
+                    , dp_params));
+                var data = (List<GetStaffs>)await result;
 
                 if (result.Result == null )
                 {
