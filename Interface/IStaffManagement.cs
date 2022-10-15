@@ -13,5 +13,6 @@ namespace policeWebApi.Interface
         public Task<GeneralResponse> AddStaff(addStaff param);
         public Task<GeneralResponse> UpdateStaff(EditStaff param);
         public Task<ResponseGetStaff> GetAllStaffs();
+        public Task<ResponseGetStaff> GetSingleStaff();
     }
 }
